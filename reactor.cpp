@@ -13,7 +13,7 @@ int Reactor::RegisterHandler(EventHandler* handler, int event)  {
 }
 
 int Reactor::RemoveHandler(EventHandler* handler)  {
-    return m_demultiplexer->UnrequestEvent(handler);
+    return m_demultiplexer->RemoveEvent(handler);
 }
 
 bool Reactor::HandleEvents()  {

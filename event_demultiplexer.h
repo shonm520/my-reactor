@@ -11,7 +11,7 @@ public:
 
     virtual int AddEvents(EventHandler* handle, int event) = 0;
 
-    virtual int UnrequestEvent(EventHandler* handle) = 0;
+    virtual int RemoveEvent(EventHandler* handle) = 0;
 };
 
 
@@ -31,7 +31,7 @@ public:
 
     virtual int AddEvents(EventHandler* handle, int event) override;
 
-    virtual int UnrequestEvent(EventHandler* handle) override;
+    virtual int RemoveEvent(EventHandler* handle) override;
 
 private:
     int m_epollFd;

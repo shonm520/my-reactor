@@ -51,7 +51,7 @@ int EpollDemultiplexer::AddEvents(EventHandler* handle, int event)  {
     return 0;
 }
 
-int EpollDemultiplexer::UnrequestEvent(EventHandler* handle)  {
+int EpollDemultiplexer::RemoveEvent(EventHandler* handle)  {
     epoll_event ep_evt;
     if (epoll_ctl(m_epollFd, EPOLL_CTL_DEL, handle->GetFd(), &ep_evt) != 0)  {
         return -errno;
