@@ -93,8 +93,8 @@ public:
         EchoSever(int fd) {m_fd = fd;}
         void HandleError() override {}
         void HandleRead() override {
-            char buf[100] = {0};
-            int ret = ::recv(m_fd, buf, 100, 0);
+            char buf[1024] = {0};
+            int ret = ::recv(m_fd, buf, 1024, 0);
             if (ret == 0)  {
                 printf("closed\n");
                 m_loop->GetReactor()->RemoveHandler(this);
@@ -104,10 +104,10 @@ public:
             }
             else  {
                 printf("recv from client : %s\n", buf);
+				::send(m_fd, buf, ret, 0);
             }
         }
         void HandleWrite() override {
-            ::send(m_fd, "hello", 5, 0);
         }
 
         void SetEventLoop(EventLoop* loop)  {
